@@ -1,0 +1,235 @@
+
+{
+  "entities": {
+    "Registration": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Registration",
+      "type": "object",
+      "description": "Represents a patient's registration for an appointment.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the registration entry."
+        },
+        "name": {
+          "type": "string",
+          "description": "The full name of the registrant."
+        },
+        "age": {
+          "type": "number",
+          "description": "The age of the registrant."
+        },
+        "gender": {
+          "type": "string",
+          "description": "The gender of the registrant."
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the registrant."
+        },
+        "email": {
+          "type": "string",
+          "description": "The email address of the registrant.",
+          "format": "email"
+        },
+        "address": {
+          "type": "string",
+          "description": "The address of the registrant."
+        },
+        "department": {
+          "type": "string",
+          "description": "The hospital department for the appointment."
+        },
+        "medicalCondition": {
+          "type": "string",
+          "description": "Details about the registrant's medical condition."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "age",
+        "gender",
+        "phone",
+        "email",
+        "address",
+        "department",
+        "medicalCondition"
+      ]
+    },
+    "ContactMessage": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ContactMessage",
+      "type": "object",
+      "description": "Represents a message submitted through the contact form.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the contact message."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the person submitting the message."
+        },
+        "email": {
+          "type": "string",
+          "description": "The email address of the person submitting the message.",
+          "format": "email"
+        },
+        "message": {
+          "type": "string",
+          "description": "The content of the message."
+        },
+        "sentAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the message was sent.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "message"
+      ]
+    },
+    "Department": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Department",
+      "type": "object",
+      "description": "Represents a hospital department.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the department."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the department."
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the department."
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "UserProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserProfile",
+      "type": "object",
+      "description": "Represents a user's profile information.",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "The user's unique ID from Firebase Authentication."
+        },
+        "name": {
+          "type": "string",
+          "description": "The user's full name."
+        },
+        "username": {
+          "type": "string",
+          "description": "The user's chosen username."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The user's email address."
+        },
+        "phone": {
+          "type": "string",
+          "description": "The user's phone number."
+        },
+        "age": {
+          "type": "number",
+          "description": "The user's age."
+        }
+      },
+      "required": [
+        "uid",
+        "name",
+        "username",
+        "email"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "UserProfile",
+          "schema": {
+            "$ref": "#/entities/UserProfile"
+          },
+          "description": "Stores public profile information for users.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The UID of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/registrations/{registrationId}",
+        "definition": {
+          "entityName": "Registration",
+          "schema": {
+            "$ref": "#/entities/Registration"
+          },
+          "description": "Stores patient registration data for appointments.",
+          "params": [
+            {
+              "name": "registrationId",
+              "description": "Unique identifier for the registration document."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/contactMessages/{contactMessageId}",
+        "definition": {
+          "entityName": "ContactMessage",
+          "schema": {
+            "$ref": "#/entities/ContactMessage"
+          },
+          "description": "Stores contact messages submitted through the website.",
+          "params": [
+            {
+              "name": "contactMessageId",
+              "description": "Unique identifier for the contact message document."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/departments/{departmentId}",
+        "definition": {
+          "entityName": "Department",
+          "schema": {
+            "$ref": "#/entities/Department"
+          },
+          "description": "Stores information about hospital departments.",
+          "params": [
+            {
+              "name": "departmentId",
+              "description": "Unique identifier for the department document."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to store data related to hospital departments, patient registrations, and contact messages. It follows a flat structure with dedicated collections for each entity. This approach simplifies security rules and queries. The `registrations` collection stores user registration data for appointments. The `contactMessages` collection stores messages submitted via the contact form. The `departments` collection stores data about the hospital departments. This structure ensures authorization independence because there are no hierarchical dependencies requiring `get()` calls in the security rules. Each collection is independent and secured based on its own data and potentially user authentication (`request.auth.uid` if authentication is required)."
+  }
+}

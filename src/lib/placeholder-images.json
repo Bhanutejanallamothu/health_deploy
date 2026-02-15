@@ -1,0 +1,34 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A background image for the hero section showing a diverse group of people at a community event.",
+      "imageUrl": "https://images.unsplash.com/photo-1759768313058-02218212c9f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtZWRpY2FsJTIwY29tbXVuaXR5fGVufDB8fHx8MTc2MjI2OTg4OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "medical community"
+    },
+    {
+      "id": "team-member-1",
+      "description": "Portrait of Dr. Jane Doe.",
+      "imageUrl": "https://images.unsplash.com/photo-1612531385446-f7e6d131e1d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkb2N0b3IlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjIyMjAwMTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "doctor portrait"
+    },
+    {
+      "id": "team-member-2",
+      "description": "Portrait of Nurse John Smith.",
+      "imageUrl": "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxudXJzZSUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MjIwNDQ1OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "nurse portrait"
+    },
+    {
+      "id": "team-member-3",
+      "description": "Portrait of Volunteer Emily White.",
+      "imageUrl": "https://images.unsplash.com/photo-1555396768-2a77b9e979c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx2b2x1bnRlZXIlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjIyNjk4ODh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "volunteer portrait"
+    },
+    {
+      "id": "about-mission",
+      "description": "Image representing the mission of HealthReach.",
+      "imageUrl": "https://images.unsplash.com/photo-1576765607924-3f7b8410a787?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb21tdW5pdHklMjBoZWFsdGh8ZW58MHx8fHwxNzYyMjIzMDUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "community health"
+    }
+  ]
+}
