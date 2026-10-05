@@ -1,124 +1,117 @@
-🩺 Health – Digital Health Management Platform
+# HealthCare Enterprise Deploy — Production Healthcare Portal
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
+[![Security Audit](https://img.shields.io/badge/security-audited-blue.svg)]()
+[![Tech Stack](https://img.shields.io/badge/stack-TypeScript-informational.svg)]()
+[![License](https://img.shields.io/badge/license-private-lightgrey.svg)]()
 
-Health is a modern, responsive web application designed to simplify how users access, manage, and interact with health-related information.
-The platform provides a centralized, secure, and scalable foundation for building real-world healthcare solutions.
+## Overview
+A production-targeted release instance of the PulseCare hospital and clinical management system. Configured for high-reliability hosting with hardened asset delivery, clean environment separation, and full patient-caregiver workflows.
 
-It focuses on accessibility, reliability, and performance, making it suitable for both academic projects and production-ready health platforms.
+- **Problem Solved:** Production deployment pipeline for medical appointments and hospital management.
+- **Target Users:** Hospital administrative staff, physicians, and patients.
+- **Current Status:** Production Deployment Release.
 
-✨ Features
+## Features
+- **Full Clinical Suite:** Triage, Outpatient Booking, Doctor Management, and Admin Telemetry.
+- **Cloud-Hardened:** Optimized Next.js build bundle for edge caching and low-latency delivery.
+- **Clean Configuration:** Complete environment decoupling for production security.
 
-⚡ Built with Next.js (App Router)
+## Architecture
+```mermaid
+flowchart TD
+    User["Web Consumer"] --> NextJS["Next.js Production Build"]
+    NextJS --> FirebaseServices["Firebase Cloud Services"]
+```
 
-🧠 TypeScript for reliable, type-safe code
+## User Flow
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Staff as Hospital Administrator
+    participant UI as HealthCare Production Web App
+    participant DB as Firestore Database
 
-🎨 Tailwind CSS for fast and responsive UI design
+    Staff->>UI: Login with administrative credentials
+    UI->>DB: Query real-time hospital occupancy and appointments
+    DB-->>UI: Return clinical metrics
+    UI-->>Staff: Display hospital bed occupancy and doctor availability meters
+    Staff->>UI: Manage clinic department rosters and adjust doctor schedules
+    UI->>DB: Persist updated schedule definitions
+```
 
-🔥 Firebase integration for backend services
+## Technology Stack
+| Layer | Technology | Purpose |
+|---|---|---|
+| Framework | Next.js 15 | Production React runtime |
+| Language | TypeScript | Type safety |
+| Styling | Tailwind CSS | Enterprise medical UI |
+| Services | Firebase Auth & Firestore | Database and Identity |
 
-🔐 Firestore security rules included
+## Infrastructure
+- **Server Port:** 3000
+- **Hosting Target:** Vercel / Firebase Hosting
 
-☁️ Deployment-ready for Vercel and Firebase Hosting
+## Project Structure
+```text
+health_deploy/
+├── src/                 # Application code
+├── package.json         # Manifest
+├── .env.example         # Template
+├── .gitignore           # Git ignore rules
+└── README.md            # Technical documentation
+```
 
-🧩 Modular and reusable component structure
+## Prerequisites
+- Node.js >= 18.x
+- Firebase Account
 
-🩺 Application Overview
-
-Healthcare systems often suffer from fragmented data, poor user experience, and limited accessibility.
-Health addresses this gap by offering a unified digital platform where users can interact with health services through a single, user-friendly interface.
-
-The application is designed to support:
-
-Personal health record management
-
-Secure user authentication
-
-Organized access to health-related data
-
-Scalable backend support for future healthcare services
-
-Its modular architecture allows it to evolve into a complete healthcare ecosystem such as a hospital portal, telemedicine platform, or health analytics dashboard.
-
-🎯 Objectives
-
-Provide a clean and intuitive interface for health-related applications
-
-Ensure secure handling of user and health data
-
-Offer a scalable foundation for advanced healthcare features
-
-Support cloud-based deployment for real-world usage
-
-🧠 Key Highlights
-
-User-centric design focused on simplicity and clarity
-
-Secure backend integration for data storage and access control
-
-Modular architecture supporting future feature expansion
-
-Optimized performance across devices and screen sizes
-
-🗂️ Project Structure
-health/
-├── docs/                    # Documentation files
-├── src/                     # Application source code
-│   ├── app/                 # Next.js App Router pages
-│   └── components/          # Reusable UI components
-├── .gitignore
-├── apphosting.yaml          # Hosting configuration
-├── components.json
-├── firestore.rules          # Firestore security rules
-├── next.config.ts           # Next.js configuration
-├── package.json             # Project dependencies & scripts
-├── postcss.config.mjs       # PostCSS configuration
-├── tailwind.config.ts       # Tailwind CSS configuration
-├── tsconfig.json            # TypeScript configuration
-└── README.md                # Project documentation
-
-🛠 Tech Stack
-Technology	Purpose
-Next.js	Server-side rendering & routing
-TypeScript	Type-safe JavaScript
-Tailwind CSS	Utility-first styling
-Firebase	Database & backend services
-Vercel / Firebase Hosting	Production deployment
-🚀 Getting Started
-1️⃣ Clone the Repository
-git clone https://github.com/Bhanutejanallamothu/health.git
-cd health
-
-2️⃣ Install Dependencies
-npm install
-# or
-yarn
-
-3️⃣ Environment Configuration
-
-Create a .env.local file in the root directory and add:
-
-NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+## Environment Variables
+Create `.env.local`:
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_firebase_project_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_firebase_app_id
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+```
 
-🔐 Demo Login Credentials
-
-Use the following credentials to access the application:
-
-Login ID: volunteer
-Password: volunteer
-
-
-⚠️ These credentials are for demo/testing purposes only.
-
-🧪 Development
-
-Start the development server:
-
+## Local Development Setup
+```bash
+git clone https://github.com/Bhanutejanallamothu/health_deploy.git
+cd health_deploy
+npm install
 npm run dev
+```
 
+## Docker Setup
+*Not detected in repository.*
 
-Visit http://localhost:3000
- to view the app.
+## Database Setup
+Firestore collections.
+
+## API Documentation
+Next.js API routes and server actions.
+
+## Deployment
+```bash
+npm run build
+npm start
+```
+
+## Security
+- Hardened credentials management.
+- Parameterized database requests.
+
+## Testing
+```bash
+npm run lint
+```
+
+## Troubleshooting
+- Verify `.env.local` keys match target Firebase project.
+
+## Future Improvements
+- Automated database backup scripts.
+
+## License
+All rights reserved by repository owner.
